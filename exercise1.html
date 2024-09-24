@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>U2-W2-D2-exercise</title>
+  </head>
+  <body>
+    <div id="newItem"></div>
+    <input type="text" id="userNameInput" placeholder="Type here your name" />
+    <button id="save">Enter</button>
+    <button id="delete">Delete</button>
+    <script>
+      const saveButton = document.getElementById("save");
+      const deleteButton = document.getElementById("delete");
+      const textArea = document.getElementById("userNameInput");
+      const newItem = document.getElementById("newItem");
+
+      const addName = function () {
+        if (textArea.value !== "") {
+          newItem.innerHTML = "Your name: " + textArea.value;
+        }
+      };
+
+      const save = function () {
+        const userName = textArea.value;
+        localStorage.setItem("localStorageData", userName);
+        addName();
+      };
+
+      const reset = function () {
+        textArea.value = "";
+        localStorage.removeItem("localStorageData");
+      };
+
+      saveButton.addEventListener("click", save);
+      deleteButton.addEventListener("click", reset);
+    </script>
+  </body>
+</html>
